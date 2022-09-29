@@ -1,16 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <table>
+        <caption>
+            Data Menyusui Rinjani
+        </caption>
+        <tr>
+            <th>Tanggal catat</th>
+            <th>Durasi Nyusu (menit)</th>
+            <th>Detail</th>
+        </tr>
     {% if breasts_data %}
-    <ul>
-
     {% for data in breasts_data %}
-            <li><a href="{% url 'breast-detail' data.id %}">{{ data }}</a></li>
+        <tr>
+            <td>{{ data.tanggal|date:'j M Y' }}</td>
+            <td>{{ data.durasi_nyusu }}</td>
+            <td><a href="{% url 'breast-detail' data.id %}">detail</a></td>
+        </tr>
+
     {% endfor %}
 
-    {% else %}
-        <p>No data are available.</p>
+    {% elif not generals_data %}
+        <tr>
+            <td colspan="3">Belum ada datanya nih :(</td>
+        </tr>
     {% endif %}
+    </table>
 
-    <li><a href="{% url 'home' %}">Kembali</a></li>
+    <div class="back-home">
+            <a href="{% url 'home' %}">kembali ke beranda</a>
+    </div>
 {% endblock %}
+
+
+
+{#{% extends "base.html" %}#}
+{##}
+{#{% block content %}#}
+{#    {% if breasts_data %}#}
+{#    <ul>#}
+{##}
+{#    {% for data in breasts_data %}#}
+{#            <li><a href="{% url 'breast-detail' data.id %}">{{ data }}</a></li>#}
+{#    {% endfor %}#}
+{##}
+{#    {% else %}#}
+{#        <p>No data are available.</p>#}
+{#    {% endif %}#}
+{##}
+{#    <li><a href="{% url 'home' %}">Kembali</a></li>#}
+{#{% endblock %}#}

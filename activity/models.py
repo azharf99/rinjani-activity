@@ -6,7 +6,7 @@ class Choice(models.TextChoices):
     NO = 'No', "Tidak"
 
 class General(models.Model):
-    tipe = models.CharField(max_length=20, default="umum")
+    tipe = models.CharField(max_length=20, default="Umum")
     usia = models.IntegerField()
     tanggal = models.DateField(auto_now_add=True)
     berat_badan = models.FloatField()
@@ -18,7 +18,7 @@ class General(models.Model):
         return "%s %s" % ("Data", self.id)
 
 class Food(models.Model):
-    tipe = models.CharField(max_length=20, default="makanan")
+    tipe = models.CharField(max_length=20, default="Makan")
     tanggal = models.DateTimeField()
     makanan = models.CharField(max_length=200)
     porsi_suapan = models.FloatField()
@@ -29,7 +29,7 @@ class Food(models.Model):
         return "%s %s %s" % (self.tanggal, self.makanan, self.porsi_suapan)
 
 class Breast(models.Model):
-    tipe = models.CharField(max_length=20, default="nyusu")
+    tipe = models.CharField(max_length=20, default="Menyusui")
     tanggal = models.DateTimeField()
     durasi_nyusu = models.FloatField()
     catatan_nyusu = models.CharField(max_length=100, blank=True)
@@ -38,7 +38,7 @@ class Breast(models.Model):
         return "%s %s" % (self.tanggal, self.durasi_nyusu)
 
 class Sleep(models.Model):
-    tipe = models.CharField(max_length=20, default="tidur")
+    tipe = models.CharField(max_length=20, default="Tidur")
     tanggal = models.DateTimeField()
     durasi_tidur = models.FloatField()
     catatan_tidur = models.CharField(max_length=100, blank=True)
@@ -56,7 +56,7 @@ class Hygiene(models.Model):
         EVENING = 'Evening', "Sore"
         EMERGENCY = 'Emergency', "Darurat"
 
-    tipe = models.CharField(max_length=20, default="mandi")
+    tipe = models.CharField(max_length=20, default="Mandi")
     tanggal = models.DateTimeField()
     mandi = models.CharField(max_length=10, choices=Bath.choices)
     durasi_mandi = models.FloatField(blank=True)
@@ -71,7 +71,7 @@ class Hygiene(models.Model):
         return "%s %s %s" % (self.tanggal, self.mandi, self.jenis_air)
 
 class Diaper(models.Model):
-    tipe = models.CharField(max_length=20, default="popok")
+    tipe = models.CharField(max_length=20, default="Popok")
     tanggal = models.DateTimeField()
     bab = models.CharField(max_length=3, choices=Choice.choices, default=Choice.NO)
     tekstur_bab = models.CharField(max_length=100, blank=True)
@@ -82,7 +82,7 @@ class Diaper(models.Model):
         return "%s %s" % (self.tanggal, self.bab)
 
 class Medicine(models.Model):
-    tipe = models.CharField(max_length=20, default="obat")
+    tipe = models.CharField(max_length=20, default="Obat")
     tanggal = models.DateTimeField()
     nama_obat = models.CharField(max_length=100)
     dosis = models.CharField(max_length=100)

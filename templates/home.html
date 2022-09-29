@@ -1,6 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Hallo {% firstof user.get_short_name user.get_username %}</h2>
-    <h2>Ini halaman Home</h2>
+    {% load static %}
+    <h2 class="welcome">Selamat Datang!</h2>
+    <h2 class="appname">Aplikasi Rinjani Activity</h2>
+    <p class="descriptions">Ini adalah sebuah aplikasi untuk mencatat seluruh aktivitas dan perkembangan yang terjadi pada anak cantik Rinjani Ruby Mandalawangi</p>
+    <div class="menu">
+        <div class="tombol">
+            <a href="{% url 'general' %}"><img src="{% static 'img/general.png' %}" alt="General"></a>
+            <p>Umum</p>
+        </div>
+        <div class="tombol">
+            <a href="{% url 'food' %}"><img src="{% static 'img/food.png' %}" alt=""></a>
+            <p>Makanan</p>
+        </div>
+        <div class="tombol">
+            <a href="{% url 'breast' %}"><img src="{% static 'img/breast.png' %}" alt=""></a>
+            <p>Menyusui</p>
+        </div>
+        <div class="tombol">
+            <a href="{% url 'sleep' %}"><img src="{% static 'img/sleep.png' %}" alt=""></a>
+            <p>Tidur</p>
+        </div>
+        <div class="tombol">
+            <a href="{% url 'hygiene' %}"><img src="{% static 'img/hygiene.png' %}" alt=""></a>
+            <p>Mandi</p>
+        </div>
+        <div class="tombol">
+            <a href="{% url 'diaper' %}"><img src="{% static 'img/diaper.png' %}" alt=""></a>
+            <p>Diaper</p>
+        </div>
+        <div class="tombol">
+            <a href="{% url 'medicine' %}"><img src="{% static 'img/medicine.png' %}" alt=""></a>
+            <p>Obat</p>
+        </div>
+    </div>
 {% endblock %}

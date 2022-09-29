@@ -1,16 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <table id="example" class="display">
+        <thead>
+        <tr>
+            <th>Tanggal catat</th>
+            <th>Usia (bulan)</th>
+            <th>Berat Badan (kg)</th>
+            <th>Detail</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
     {% if generals_data %}
-    <ul>
-
     {% for data in generals_data %}
-            <li><a href="{% url 'general-detail' data.id %}">{{ data }}</a></li>
+            <td>{{ data.tanggal|date:'j M Y' }}</td>
+            <td>{{ data.usia }}</td>
+            <td>{{ data.berat_badan }}</td>
+            <td><a href="{% url 'general-detail' data.id %}">detail</a></td>
     {% endfor %}
+        </tr>
 
     {% else %}
-        <p>No data are available.</p>
+        <tr>
+            <td colspan="4">Belum ada datanya nih :(</td>
+        </tr>
     {% endif %}
+        </tbody>
+    </table>
 
-    <li><a href="{% url 'home' %}">Kembali</a></li>
+    {% include "back.html" %}
 {% endblock %}
+
+
+
+

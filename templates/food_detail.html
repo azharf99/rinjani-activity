@@ -1,18 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Ini halaman Food Detail</h2>
+    <table>
+        <caption>
+            Detail Data Makan Rinjani
+        </caption>
+        <tr>
+            <th>Tanggal catat</th>
+            <th>Makanan</th>
+            <th>Porsi (suap)</th>
+            <th>Durasi makan (menit)</th>
+            <th>Catatan Makan</th>
+        </tr>
     {% if food_data %}
-    <ul>
-        <li>{{ food_data.tanggal|date:"j F Y" }}</li>
-        <li>{{ food_data.makanan }}</li>
-        <li>{{ food_data.porsi_suapan }} suap</li>
-        <li>{{ food_data.durasi_makan }} menit</li>
-        <li>{{ food_data.catatan_makan }}</li>
-    </ul>
+        <tr>
+            <td>{{ food_data.tanggal|date:'j M Y' }}</td>
+            <td>{{ food_data.makanan }}</td>
+            <td>{{ food_data.porsi_suapan }}</td>
+            <td>{{ food_data.durasi_makan }}</td>
+            <td>{{ food_data.catatan_makan }}</td>
+        </tr>
+    </table>
+
     {% else %}
         <p>No data are available.</p>
     {% endif %}
-    <li><a href="{% url 'food' %}">Kembali ke Halaman Food</a></li>
-    <li><a href="{% url 'home' %}">Kembali ke HOME</a></li>
+
+    <div class="back-home">
+        <a href="{% url 'food' %}">Kembali ke Halaman Food</a>
+        <a href="{% url 'home' %}">kembali ke beranda</a>
+    </div>
 {% endblock %}

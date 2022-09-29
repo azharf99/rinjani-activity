@@ -1,18 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Ini halaman General</h2>
+    <table>
+        <caption>
+            Detail Data Umum Rinjani
+        </caption>
+        <tr>
+            <th>Tanggal catat</th>
+            <th>Usia (bulan)</th>
+            <th>Berat Badan (kg)</th>
+            <th>Tinggi Badan (cm)</th>
+            <th>Lingkar kepala (cm)</th>
+            <th>Suhu Tubuh (<sup>o</sup>C)</th>
+        </tr>
+
     {% if general_data %}
-    <ul>
-        <li>{{ general_data.tanggal|date:"j F Y" }}</li>
-        <li>{{ general_data.usia }} bulan</li>
-        <li>{{ general_data.berat_badan }} kg</li>
-        <li>{{ general_data.lingkar_kepala }} cm</li>
-        <li>{{ general_data.suhu_tubuh }} <sup>o</sup>celcius</li>
-    </ul>
+        <tr>
+            <td>{{ general_data.tanggal|date:"j M Y" }}</td>
+            <td>{{ general_data.usia }}</td>
+            <td>{{ general_data.berat_badan }}</td>
+            <td>{{ general_data.tinggi_badan }}</td>
+            <td>{{ general_data.lingkar_kepala }}</td>
+            <td>{{ general_data.suhu_tubuh }}</td>
+        </tr>
+    </table>
+
     {% else %}
         <p>No data are available.</p>
     {% endif %}
-    <li><a href="{% url 'general' %}">Kembali ke Halaman Umum</a></li>
-    <li><a href="{% url 'home' %}">Kembali ke HOME</a></li>
+    <div class="back-home">
+        <a href="{% url 'general' %}">Kembali ke Halaman Umum</a>
+        <a href="{% url 'home' %}">kembali ke beranda</a>
+    </div>
 {% endblock %}

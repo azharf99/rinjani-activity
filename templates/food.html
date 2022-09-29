@@ -1,16 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if foods_data %}
-    <ul>
+    <table>
+        <caption>
+            Data Makan Rinjani
+        </caption>
+        <tr>
+            <th>Tanggal catat</th>
+            <th>Makanan</th>
+            <th>Porsi (suap)</th>
+            <th>Detail</th>
+        </tr>
 
+        <tr>
+    {% if foods_data %}
     {% for data in foods_data %}
-            <li><a href="{% url 'food-detail' data.id %}">{{ data }}</a></li>
+            <td>{{ data.tanggal|date:'j M Y' }}</td>
+            <td>{{ data.makanan }}</td>
+            <td>{{ data.porsi_suapan }}</td>
+            <td><a href="{% url 'food-detail' data.id %}">detail</a></td>
     {% endfor %}
+        </tr>
 
     {% else %}
-        <p>No data are available.</p>
+        <tr>
+            <td colspan="4">Belum ada datanya nih :(</td>
+        </tr>
+    </table>
     {% endif %}
 
-    <li><a href="{% url 'home' %}">Kembali</a></li>
+    <div class="back-home">
+            <a href="{% url 'home' %}">kembali ke beranda</a>
+    </div>
 {% endblock %}
