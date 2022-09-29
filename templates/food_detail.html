@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ini halaman Food Detail</h2>
+    {% if food_data %}
+    <ul>
+        <li>{{ food_data.tanggal|date:"j F Y" }}</li>
+        <li>{{ food_data.makanan }}</li>
+        <li>{{ food_data.porsi_suapan }} suap</li>
+        <li>{{ food_data.durasi_makan }} menit</li>
+        <li>{{ food_data.catatan_makan }}</li>
+    </ul>
+    {% else %}
+        <p>No data are available.</p>
+    {% endif %}
+    <li><a href="{% url 'food' %}">Kembali ke Halaman Food</a></li>
+    <li><a href="{% url 'home' %}">Kembali ke HOME</a></li>
+{% endblock %}

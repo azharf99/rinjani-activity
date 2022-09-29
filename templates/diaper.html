@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if diapers_data %}
+    <ul>
+
+    {% for data in diapers_data %}
+            <li><a href="{% url 'diaper-detail' data.id %}">{{ data }}</a></li>
+    {% endfor %}
+
+    {% else %}
+        <p>No data are available.</p>
+    {% endif %}
+
+    <li><a href="{% url 'home' %}">Kembali</a></li>
+{% endblock %}

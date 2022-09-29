@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ini halaman Sleep Detail</h2>
+    {% if sleep_data %}
+    <ul>
+        <li>{{ sleep_data.tanggal|date:"j F Y" }}</li>
+        <li>{{ sleep_data.durasi_tidur }}</li>
+        <li>{{ sleep_data.catatan_tidur }}</li>
+    </ul>
+    {% else %}
+        <p>No data are available.</p>
+    {% endif %}
+    <li><a href="{% url 'sleep' %}">Kembali ke Halaman Sleep</a></li>
+    <li><a href="{% url 'home' %}">Kembali ke HOME</a></li>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if generals_data %}
+    <ul>
+
+    {% for data in generals_data %}
+            <li><a href="{% url 'general-detail' data.id %}">{{ data }}</a></li>
+    {% endfor %}
+
+    {% else %}
+        <p>No data are available.</p>
+    {% endif %}
+
+    <li><a href="{% url 'home' %}">Kembali</a></li>
+{% endblock %}

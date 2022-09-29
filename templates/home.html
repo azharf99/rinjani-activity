@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Hallo {% firstof user.get_short_name user.get_username %}</h2>
+    <h2>Ini halaman Home</h2>
+{% endblock %}

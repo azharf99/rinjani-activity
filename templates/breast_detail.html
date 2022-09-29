@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ini halaman Breast Detail</h2>
+    {% if breast_data %}
+    <ul>
+        <li>{{ breast_data.tanggal|date:"j F Y" }}</li>
+        <li>{{ breast_data.durasi_nyusu }}</li>
+        <li>{{ breast_data.catatan_nyusu }}</li>
+    </ul>
+    {% else %}
+        <p>No data are available.</p>
+    {% endif %}
+    <li><a href="{% url 'breast' %}">Kembali ke Halaman Breast</a></li>
+    <li><a href="{% url 'home' %}">Kembali ke HOME</a></li>
+{% endblock %}

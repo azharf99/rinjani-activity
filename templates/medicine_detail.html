@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ini halaman Medicibe Detail</h2>
+    {% if medicine_data %}
+    <ul>
+        <li>{{ medicine_data.tanggal|date:"j F Y" }}</li>
+        <li>{{ medicine_data.nama_obat }}</li>
+        <li>{{ medicine_data.dosis }}</li>
+        <li>{{ medicine_data.manfaat }}</li>
+        <li>{{ medicine_data.vaksin }}</li>
+    </ul>
+    {% else %}
+        <p>No data are available.</p>
+    {% endif %}
+    <li><a href="{% url 'medicine' %}">Kembali ke Halaman Medicine</a></li>
+    <li><a href="{% url 'home' %}">Kembali ke HOME</a></li>
+{% endblock %}

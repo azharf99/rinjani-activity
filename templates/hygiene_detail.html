@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ini halaman Hygiene Detail</h2>
+    {% if hygiene_data %}
+    <ul>
+        <li>{{ hygiene_data.tanggal|date:"j F Y" }}</li>
+        <li>{{ hygiene_data.mandi }}</li>
+        <li>{{ hygiene_data.merk_sabun }}</li>
+        <li>{{ hygiene_data.jenis_air }}</li>
+        <li>{{ hygiene_data.durasi_mandi }}</li>
+        <li>{{ hygiene_data.gosok_gigi }}</li>
+        <li>{{ hygiene_data.gosok_kepala }}</li>
+        <li>{{ hygiene_data.gosok_lidah }}</li>s
+        <li>{{ hygiene_data.catatan_mandi }}</li>
+    </ul>
+    {% else %}
+        <p>No data are available.</p>
+    {% endif %}
+    <li><a href="{% url 'hygiene' %}">Kembali ke Halaman Hygiene</a></li>
+    <li><a href="{% url 'home' %}">Kembali ke HOME</a></li>
+{% endblock %}
