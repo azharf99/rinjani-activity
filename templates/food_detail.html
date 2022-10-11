@@ -1,33 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table>
-        <caption>
-            Detail Data Makan Rinjani
-        </caption>
-        <tr>
-            <th>Tanggal catat</th>
-            <th>Makanan</th>
-            <th>Porsi (suap)</th>
-            <th>Durasi makan (menit)</th>
-            <th>Catatan Makan</th>
-        </tr>
-    {% if food_data %}
-        <tr>
-            <td>{{ food_data.tanggal|date:'j M Y' }}</td>
-            <td>{{ food_data.makanan }}</td>
-            <td>{{ food_data.porsi_suapan }}</td>
-            <td>{{ food_data.durasi_makan }}</td>
-            <td>{{ food_data.catatan_makan }}</td>
-        </tr>
-    </table>
+    <div class="container position-absolute top-50 start-50 translate-middle d-flex justify-content-center">
+    <div class="card mw-100">
+      <div class="card-header">
+        Data Makan Rinjani
+      </div>
+      <div class="card-body">
+        {% if detail %}
+        <div class="row">
+            <div class="col">Tanggal</div>
+            <div class="col">: {{ detail.tanggal|date:"j M Y" }}</div>
+        </div>
+        <div class="row">
+            <div class="col">Waktu</div>
+            <div class="col">: {{ detail.waktu|date:"G:i" }} WIB</div>
+        </div>
+        <div class="row">
+            <div class="col">Makanan</div>
+            <div class="col">: {{ detail.makanan }}</div>
+        </div>
+        <div class="row">
+            <div class="col">Porsi</div>
+            <div class="col">: {{ detail.porsi_suapan }} suap</div>
+        </div>
+        <div class="row">
+            <div class="col">Durasi makan</div>
+            <div class="col">: {{ detail.durasi_makan}} menit</div>
+        </div>
+        <div class="row">
+            <div class="col">Catatan makan</div>
+            <div class="col">: {{ detail.catatan_makan }}</div>
+        </div>
 
-    {% else %}
-        <p>No data are available.</p>
-    {% endif %}
+        {% else %}
+        <p>Maaf, datanya gak ada :(</p>
 
-    <div class="back-home">
-        <a href="{% url 'food' %}">Kembali ke Halaman Food</a>
-        <a href="{% url 'home' %}">kembali ke beranda</a>
+        {% endif %}
+        <div class="d-flex justify-content-between mt-3 mb-3">
+        <a href="{% url 'home' %}" class="btn btn-danger">Home <i class="bi bi-house"></i></a>
+        <a href="{% url 'food' %}" class="btn btn-primary">Back to Table</a>
+        </div>
+      </div>
+    </div>
     </div>
 {% endblock %}

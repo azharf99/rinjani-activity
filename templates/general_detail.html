@@ -1,35 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table>
-        <caption>
-            Detail Data Umum Rinjani
-        </caption>
-        <tr>
-            <th>Tanggal catat</th>
-            <th>Usia (bulan)</th>
-            <th>Berat Badan (kg)</th>
-            <th>Tinggi Badan (cm)</th>
-            <th>Lingkar kepala (cm)</th>
-            <th>Suhu Tubuh (<sup>o</sup>C)</th>
-        </tr>
+    <div class="container position-absolute top-50 start-50 translate-middle d-flex justify-content-center">
+    <div class="card mw-100">
+      <div class="card-header">
+        Data Umum Perkembangan Rinjani
+      </div>
+      <div class="card-body">
+        {% if detail %}
+        <div class="row">
+            <div class="col">Tanggal</div>
+            <div class="col">: {{ detail.tanggal|date:"j F Y" }}</div>
+        </div>
+        <div class="row">
+            <div class="col">Usia</div>
+            <div class="col">: {{ detail.usia }} bulan</div>
+        </div>
+        <div class="row">
+            <div class="col">Berat badan</div>
+            <div class="col">: {{ detail.berat_badan }} kg</div>
+        </div>
+        <div class="row">
+            <div class="col">Tinggi badan</div>
+            <div class="col">: {{ detail.tinggi_badan }} cm</div>
+        </div>
+        <div class="row">
+            <div class="col">Suhu tubuh</div>
+            <div class="col">: {{ detail.suhu_tubuh }}</div>
+        </div>
+        <div class="row">
+            <div class="col">Perkembangan</div>
+            <div class="col">: {{ detail.perkembangan }}</div>
+        </div>
 
-    {% if general_data %}
-        <tr>
-            <td>{{ general_data.tanggal|date:"j M Y" }}</td>
-            <td>{{ general_data.usia }}</td>
-            <td>{{ general_data.berat_badan }}</td>
-            <td>{{ general_data.tinggi_badan }}</td>
-            <td>{{ general_data.lingkar_kepala }}</td>
-            <td>{{ general_data.suhu_tubuh }}</td>
-        </tr>
-    </table>
+        {% else %}
+        <p>Maaf, datanya gak ada :(</p>
 
-    {% else %}
-        <p>No data are available.</p>
-    {% endif %}
-    <div class="back-home">
-        <a href="{% url 'general' %}">Kembali ke Halaman Umum</a>
-        <a href="{% url 'home' %}">kembali ke beranda</a>
+        {% endif %}
+        <div class="d-flex justify-content-between mt-3 mb-3">
+        <a href="{% url 'home' %}" class="btn btn-danger">Home <i class="bi bi-house"></i></a>
+        <a href="{% url 'general' %}" class="btn btn-primary">Back to Table</a>
+        </div>
+      </div>
+    </div>
     </div>
 {% endblock %}

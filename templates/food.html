@@ -1,35 +1,68 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table>
-        <caption>
-            Data Makan Rinjani
-        </caption>
-        <tr>
-            <th>Tanggal catat</th>
-            <th>Makanan</th>
-            <th>Porsi (suap)</th>
-            <th>Detail</th>
-        </tr>
+    {% include 'menu.html' %}
 
+    <!-- Tebel data -->
+    <div class="container mt-3 mb-5">
+
+    <p class="text-center">Data Makan Rinjani</p>
+
+    <table class="table table-hover table-responsive align-middle">
+        <thead class="table-dark">
         <tr>
-    {% if foods_data %}
-    {% for data in foods_data %}
+            <th>Tanggal</th>
+            <th>Makanan</th>
+            <th>Porsi</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+    {% if datas %}
+    {% for data in datas %}
+        <tbody>
+        <tr>
             <td>{{ data.tanggal|date:'j M Y' }}</td>
             <td>{{ data.makanan }}</td>
             <td>{{ data.porsi_suapan }}</td>
-            <td><a href="{% url 'food-detail' data.id %}">detail</a></td>
+            <td><a class="btn btn-outline-primary btn-sm" href="{% url 'food-detail' data.id %}"><i class="bi bi-list"></i></a></td>
     {% endfor %}
         </tr>
-
-    {% else %}
-        <tr>
-            <td colspan="4">Belum ada datanya nih :(</td>
-        </tr>
-    </table>
     {% endif %}
+        </tbody>
+    </table>
+    </div>
 
-    <div class="back-home">
-            <a href="{% url 'home' %}">kembali ke beranda</a>
+    <!-- Modal Input Data -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-info">
+            <h5 class="modal-title" id="exampleModalLabel">Input Data</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex flex-column">
+            <form action="{% url 'food' %}" method="post">
+                {% csrf_token %}
+                <div class="container">
+                    {% for field in form %}
+                        <div class="d-flex justify-content-between mt-2 mb-2">
+                            {{ field.errors }}
+                            {{ field.label_tag }}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="container d-flex justify-content-center mt-3 mb-1">
+                    <input class="btn btn-success" type="submit" value="Submit">
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 {% endblock %}
+
+
+
+

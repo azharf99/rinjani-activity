@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from activity.models import General, Food, Breast, Sleep, Hygiene, Diaper, Medicine
 from django.contrib.auth.models import User
+from activity.form import GeneralForm, FoodForm, BreastForm, SleepForm, HygineForm, MedicineForm, DiaperForm
 
 # Create your views here.
 
@@ -11,99 +12,167 @@ def index(request):
     return render(request, 'home.html', context=nama)
 
 def general(request):
-    generals_data = General.objects.order_by('-tanggal')
+    datas = General.objects.order_by('-tanggal')
+    form = GeneralForm()
     context = {
-        'generals_data': generals_data,
+        'datas': datas,
+        'form': form,
     }
+
+    if request.method == 'POST':
+        form = GeneralForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('general')
+    else:
+        form = GeneralForm()
+
     return render(request, 'general.html', context=context)
 
 def general_detail(request, pk):
-    general_data = General.objects.get(id=pk)
+    detail = General.objects.get(id=pk)
     context = {
-        'general_data': general_data,
+        'detail': detail,
     }
     return render(request, 'general_detail.html', context=context)
 
 def food(request):
-    foods_data = Food.objects.order_by('-tanggal')
+    datas = Food.objects.order_by('-tanggal')
+    form = FoodForm()
     context = {
-        'foods_data': foods_data,
+        'datas': datas,
+        'form': form,
     }
+    if request.method == 'POST':
+        tanggal = request.POST.get('tanggal')
+        waktu = request.POST.get('waktu')
+        form = FoodForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('food')
+    else:
+        form = FoodForm()
     return render(request, 'food.html', context=context)
 
 def food_detail(request, pk):
-    food_data = Food.objects.get(id=pk)
+    detail = Food.objects.get(id=pk)
     context = {
-        'food_data': food_data,
+        'detail': detail,
     }
     return render(request, 'food_detail.html', context=context)
 
 def breast(request):
-    breasts_data = Breast.objects.order_by('-tanggal')
+    datas = Breast.objects.order_by('-tanggal')
+    form = BreastForm()
     context = {
-        'breasts_data': breasts_data,
+        'datas': datas,
+        'form': form,
     }
+    if request.method == 'POST':
+        form = BreastForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('breast')
+    else:
+        form = BreastForm()
+
     return render(request, 'breast.html', context=context)
 
 def breast_detail(request, pk):
-    breast_data = Breast.objects.get(id=pk)
+    detail = Breast.objects.get(id=pk)
     context = {
-        'breast_data': breast_data,
+        'detail': detail,
     }
     return render(request, 'breast_detail.html', context=context)
 
 def sleep(request):
-    sleeps_data = Sleep.objects.order_by('-tanggal')
+    datas = Sleep.objects.order_by('-tanggal')
+    form = SleepForm()
     context = {
-        'sleeps_data': sleeps_data,
+        'datas': datas,
+        'form': form,
     }
+    if request.method == 'POST':
+        form = SleepForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('sleep')
+    else:
+        form = SleepForm()
     return render(request, 'sleep.html', context=context)
 
 def sleep_detail(request, pk):
-    sleep_data = Sleep.objects.get(id=pk)
+    detail = Sleep.objects.get(id=pk)
     context = {
-        'sleep_data': sleep_data,
+        'detail': detail,
     }
     return render(request, 'sleep_detail.html', context=context)
 
 def hygiene(request):
-    hygienes_data = Hygiene.objects.order_by('-tanggal')
+    datas = Hygiene.objects.order_by('-tanggal')
+    form = HygineForm()
     context = {
-        'hygienes_data': hygienes_data,
+        'datas': datas,
+        'form': form,
     }
+    if request.method == 'POST':
+        form = HygineForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('hygiene')
+    else:
+        form = HygineForm()
     return render(request, 'hygiene.html', context=context)
 
 def hygiene_detail(request, pk):
-    hygiene_data = Hygiene.objects.get(id=pk)
+    detail = Hygiene.objects.get(id=pk)
     context = {
-        'hygiene_data': hygiene_data,
+        'detail': detail,
     }
     return render(request, 'hygiene_detail.html', context=context)
 
 def diaper(request):
-    diapers_data = Diaper.objects.order_by('-tanggal')
+    datas = Diaper.objects.order_by('-tanggal')
+    form = DiaperForm()
     context = {
-        'diapers_data': diapers_data,
+        'datas': datas,
+        'form': form,
     }
+    if request.method == 'POST':
+        form = DiaperForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('diaper')
+    else:
+        form = DiaperForm()
     return render(request, 'diaper.html', context=context)
 
 def diaper_detail(request, pk):
-    diaper_data = Diaper.objects.get(id=pk)
+    detail = Diaper.objects.get(id=pk)
     context = {
-        'diaper_data': diaper_data,
+        'detail': detail,
     }
     return render(request, 'diaper_detail.html', context=context)
 
 def medicine(request):
-    medicines_data = Medicine.objects.order_by('-tanggal')
+    datas = Medicine.objects.order_by('-tanggal')
+    form = MedicineForm()
     context = {
-        'medicines_data': medicines_data,
+        'datas': datas,
+        'form': form,
     }
+    if request.method == 'POST':
+        form = MedicineForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('medicine')
+    else:
+        form = MedicineForm()
     return render(request, 'medicine.html', context=context)
 
 def medicine_detail(request, pk):
-    medicine_data = Medicine.objects.get(id=pk)
+    detail = Medicine.objects.get(id=pk)
     context = {
-        'medicine_data': medicine_data,
+        'detail': detail,
     }
     return render(request, 'medicine_detail.html', context=context)

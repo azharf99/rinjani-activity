@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+    <!-- Buka menu -->
+    <div class="container fixed-bottom d-flex justify-content-end">
+    <button class="btn btn-success mb-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-plus-lg"></i></button>
+
+    <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="container d-flex flex-column position-absolute top-50 start-50 translate-middle">
+        <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Input Data</button>
+        <a class="btn btn-danger mb-4" href="{% url 'home' %}">Kembali ke <i class="bi bi-house"></i></a>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="offcanvas" aria-label="Close">Close Menu</button>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- kembali ke Home -->
+    <div class="container fixed-top">
+    <a class="btn btn-danger mt-1" href="{% url 'home' %}"><i class="bi bi-house"></i></a>
+    </div>
